@@ -1,8 +1,5 @@
 # React Keyframes
 
-[![Build Status](https://travis-ci.org/zeit/react-keyframes.svg?branch=master)](https://travis-ci.org/zeit/react-keyframes)
-[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg)](https://github.com/sindresorhus/xo)
-
 A React component for creating frame-based animations.
 
 ![Demo](https://cloud.githubusercontent.com/assets/775227/14613178/24789406-05d6-11e6-8411-6ee929ae3f3e.gif)
@@ -96,4 +93,4 @@ class extends Component {
 
 ## Author
 
-Naoyuki Kanezawa ([@nkzawa](https://twitter.com/nkzawa)) - [▲ZEIT](https://zeit.co)
+Naoyuki Kanezawa ([@nkzawa](https://twitter.com/nkzawa)) - [Vercel](https://vercel.com)
