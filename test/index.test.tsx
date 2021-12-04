@@ -43,3 +43,44 @@ it("should render custom component", () => {
   expect(container.childNodes[0].nodeName).toBe("PRE");
   expect(container.childNodes[0]).toHaveClass("woot");
 });
+
+it("should call onEnd", () => {
+  let count = 0;
+
+  render(
+    <Keyframes onEnd={() => count += 1}>
+      <Frame duration={100}>foo</Frame>
+      <Frame duration={200}>bar</Frame>
+      <Frame>baz</Frame>
+    </Keyframes>
+  );
+
+
+  jest.advanceTimersByTime(100);
+
+  expect(count).toBe(0);
+
+  jest.advanceTimersByTime(200);
+
+  expect(count).toBe(1);
+});
+
+it("should animate loop", () => {
+  const {container} = render(
+    <Keyframes loop>
+      <Frame duration={100}>foo</Frame>
+      <Frame duration={200}>bar</Frame>
+      <Frame>baz</Frame>
+    </Keyframes>
+  );
+
+
+  jest.advanceTimersByTime(500);
+
+  expect(container.childNodes[0].textContent).toBe("bar");
+
+
+  jest.advanceTimersByTime(100);
+  expect(container.childNodes[0].textContent).toBe("foo");
+
+})
