@@ -4,6 +4,8 @@ import React from "react";
 type Props = {
   children: any;
   component?: any;
+  onEnd?: VoidFunction;
+  loop?: boolean;
   [frameProp: string]: any;
 };
 
@@ -59,7 +61,7 @@ export class Keyframes extends React.Component<Props, State> {
       return null;
     }
 
-    const { component = "span", children, ...rest } = this.props;
+    const { component = "span", children, onEnd, ...rest } = this.props;
 
     return React.cloneElement(frame, { component, ...rest, ...frame.props });
   }
@@ -68,6 +70,7 @@ export class Keyframes extends React.Component<Props, State> {
     this.waitForDelay(() => {
       const frameNum = this.state.frameNum + 1;
       if (this.props.children.length <= frameNum) {
+        this.props.loop ? this.restart() : this.props.onEnd && this.props.onEnd();
         return;
       }
 
@@ -85,5 +88,9 @@ export class Keyframes extends React.Component<Props, State> {
 
   getFrame() {
     return this.props.children[this.state.frameNum];
+  }
+
+  restart () {
+    this.setState({ frameNum: 0 });
   }
 }
